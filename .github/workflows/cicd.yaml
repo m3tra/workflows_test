@@ -1,0 +1,18 @@
+name: CI + CD to DEV
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: development
+    name: "Build"
+    steps:
+      - name: Echo & Sleep
+        run: echo 12345; sleep 10
