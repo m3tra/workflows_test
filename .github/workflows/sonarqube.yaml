@@ -47,6 +47,8 @@ on:
 
 jobs:
   sonar:
+    name: SonarQube Static Testing
+    runs-on: ubuntu-latest
     steps:
       - name: Echo & Sleep
         run: echo 12345; sleep 10
