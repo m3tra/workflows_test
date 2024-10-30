@@ -51,7 +51,7 @@ jobs:
   # build:
   #   uses: ./.github/workflows/cicd.yaml
   sonar:
-    needs: build
+    # needs: build
     name: SonarQube Static Testing
     runs-on: ubuntu-latest
     steps:
