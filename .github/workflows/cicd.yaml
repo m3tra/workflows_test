@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: development
+    # environment: development
     name: "Build"
     steps:
       - name: Echo & Sleep
