@@ -2,7 +2,7 @@ name: SonarQube Static Testing
 
 on:
   workflow_run:
-    workflows: [CI + CD to DEV]
+    workflows: [cicd]
     types: [completed]
   push:
     branches: [main, master]
