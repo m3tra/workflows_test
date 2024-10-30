@@ -4,14 +4,14 @@ on:
   workflow_run:
     workflows: [cicd]
     types: [completed]
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+  # push:
+  #   branches: [main, master]
+  # pull_request:
+  #   branches: [main, master]
   schedule:
     - cron: '0 16 * * 0' # Every sunday at 16:00
   workflow_dispatch:
-  workflow_call:
+  # workflow_call:
 
 # jobs:
 #   build:
