@@ -1,11 +1,11 @@
 name: CI + CD to DEV
 
 on:
-  # push:
-  #   branches: [main, master]
+  push:
+    branches: [main, master]
   pull_request:
     branches: [main, master]
-  workflow_call:
+  # workflow_call:
 
 jobs:
   build:
