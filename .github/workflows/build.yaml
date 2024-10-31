@@ -1,0 +1,13 @@
+name: Build
+
+on:
+  workflow_call:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    # environment: development
+    name: "Build"
+    steps:
+      - name: Echo & Sleep
+        run: echo Building...; sleep 7

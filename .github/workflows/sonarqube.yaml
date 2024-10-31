@@ -1,59 +1,18 @@
-name: SonarQube Static Testing
+name: SonarQube_Static_Testing
 
 on:
-  workflow_run:
-    workflows: [CI/CD]
-    types: [completed]
-  # push:
-  #   branches: [main, master]
-  # pull_request:
-  #   branches: [main, master]
+  # workflow_run:
+  #   workflows: [CI/CD]
+  #   types: [completed]
   schedule:
     - cron: '0 16 * * 0' # Every sunday at 16:00
   workflow_dispatch:
-  # workflow_call:
-
-# jobs:
-#   build:
-#     name: SonarQube Static Testing
-#     if: ${{ github.actor != 'dependabot[bot]' }}
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#         with:
-#           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-
-#       - name: Set dynamic variable
-#         run: echo REPO="$(echo ${{ github.repository }} | sed -e "s/\//:/g")" >> ${{ github.env }}
-
-#       - uses: actions/download-artifact@v4
-#         with:
-#           name: coverage_report
-#           path: coverage.xml
-#           github-token: ${{ github.token }}
-
-#       - uses: sonarsource/sonarqube-scan-action@master
-#         env:
-#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-#         with:
-# #          projectBaseDir: src/
-#           args: >
-#             -Dsonar.python.version=3.12
-#             -Dsonar.sources=src/
-#             -Dsonar.tests=tests/
-#             -Dsonar.verbose=true
-#             -Dsonar.projectKey=${{ env.REPO }}
-#             -Dsonar.python.coverage.reportPaths=coverage.xml
-# #            -Dsonar.qualitygate.wait=true
+  workflow_call:
 
 jobs:
-  # build:
-  #   uses: ./.github/workflows/cicd.yaml
   sonar:
-    # needs: build
     name: SonarQube Static Testing
     runs-on: ubuntu-latest
     steps:
       - name: Echo & Sleep
-        run: echo 12345; sleep 7
+        run: echo Scanning...; sleep 7
