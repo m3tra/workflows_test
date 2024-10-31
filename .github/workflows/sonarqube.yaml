@@ -11,9 +11,11 @@ on:
 
 jobs:
   Scan:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Download Coverage Report Artifact
+        - name: Download Coverage Report Artifact
         uses: actions/download-artifact@v4
         with:
           name: coverage_report
