@@ -9,5 +9,5 @@ jobs:
     # environment: development
     name: "Deploy"
     steps:
-        - name: Echo & Sleep
+      - name: Echo & Sleep
         run: echo Deploying...; sleep 7
