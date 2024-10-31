@@ -10,9 +10,15 @@ on:
   workflow_call:
 
 jobs:
-  sonar:
+  scan:
     name: SonarQube Static Testing
     runs-on: ubuntu-latest
     steps:
       - name: Echo & Sleep
         run: echo Scanning...; sleep 7
+  analysis:
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo & Sleep
+        run: echo Analyzing new code...; sleep 7
