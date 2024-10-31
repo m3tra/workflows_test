@@ -7,15 +7,14 @@ on:
     branches: [main, master]
 
 jobs:
-  build:
+  Build:
     uses: ./.github/workflows/build.yaml
 
   SonarQube:
     needs: build
     uses: ./.github/workflows/sonarqube.yaml
 
-  deploy:
+  Deploy:
     if: github.event_name == 'push'
-    name: Deploy2
-    needs: [build,SonarQube]
+    needs: [Build,SonarQube]
     uses: ./.github/workflows/deploy.yaml
