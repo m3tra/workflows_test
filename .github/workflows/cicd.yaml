@@ -14,4 +14,4 @@ jobs:
     name: "Build"
     steps:
       - name: Echo & Sleep
-        run: echo 12345; sleep 10
+        run: echo 12345; sleep 7
