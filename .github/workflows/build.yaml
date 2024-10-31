@@ -7,7 +7,19 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     # environment: development
-    name: "Build"
+    name: Build
     steps:
       - name: Echo & Sleep
         run: echo Building...; sleep 7
+
+      - name: Create test file
+        run: test > coverage.xml
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage_report
+          path: coverage.xml
+          if-no-files-found: error
+          retention-days:
+          overwrite: true

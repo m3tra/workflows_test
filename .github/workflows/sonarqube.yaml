@@ -1,4 +1,4 @@
-name: SonarQube Static Testing
+name: SonarQube
 
 on:
   # workflow_run:
@@ -11,12 +11,20 @@ on:
 
 jobs:
   scan:
-    name: SonarQube Static Testing
+    name: Scan
     runs-on: ubuntu-latest
     steps:
+      - name: Download Coverage Report Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage_report
+          path: coverage.xml
+          github-token: ${{ github.token }}
+
       - name: Echo & Sleep
         run: echo Scanning...; sleep 7
-  analysis:
+  check:
+    name: Quality Gate Check
     needs: scan
     runs-on: ubuntu-latest
     steps:
