@@ -11,13 +11,13 @@ jobs:
     name: Build2
     uses: ./.github/workflows/build.yaml
 
-  deploy:
-    if: github.event_name == 'push'
-    name: Deploy2
-    needs: build
-    uses: ./.github/workflows/deploy.yaml
-
   SonarQube:
     name: SonarQube2
     needs: build
     uses: ./.github/workflows/sonarqube.yaml
+
+  deploy:
+    if: github.event_name == 'push'
+    name: Deploy2
+    needs: [build,SonarQube]
+    uses: ./.github/workflows/deploy.yaml
