@@ -8,11 +8,9 @@ on:
 
 jobs:
   build:
-    name: Build2
     uses: ./.github/workflows/build.yaml
 
   SonarQube:
-    name: SonarQube2
     needs: build
     uses: ./.github/workflows/sonarqube.yaml
 
