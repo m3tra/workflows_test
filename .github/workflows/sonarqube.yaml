@@ -1,4 +1,4 @@
-name: SonarQube_Static_Testing
+name: SonarQube Static Testing
 
 on:
   # workflow_run:
