@@ -10,8 +10,7 @@ on:
   workflow_call:
 
 jobs:
-  scan:
-    name: Scan
+  Scan:
     runs-on: ubuntu-latest
     steps:
       - name: Download Coverage Report Artifact
@@ -23,9 +22,9 @@ jobs:
 
       - name: Echo & Sleep
         run: echo Scanning...; sleep 7
-  check:
+  Check:
     name: Quality Gate Check
-    needs: scan
+    needs: Scan
     runs-on: ubuntu-latest
     steps:
       - name: Echo & Sleep
