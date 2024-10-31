@@ -2,15 +2,15 @@ name: SonarQube Static Testing
 
 on:
   workflow_run:
-    workflows: [cicd]
+    workflows: [CI/CD]
     types: [completed]
   # push:
   #   branches: [main, master]
   # pull_request:
   #   branches: [main, master]
-  schedule:
-    - cron: '0 16 * * 0' # Every sunday at 16:00
-  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 16 * * 0' # Every sunday at 16:00
+  # workflow_dispatch:
   # workflow_call:
 
 # jobs:
