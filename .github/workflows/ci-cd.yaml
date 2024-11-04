@@ -27,6 +27,7 @@ jobs:
         run: echo hello
 
   sonarqube:
+    name: SonarQube
     permissions:
       contents: read
       actions: read
@@ -35,6 +36,6 @@ jobs:
       sonar_token: ${{ secrets.SONAR_TOKEN }}
       sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
     with:
-      python_version: ${{ vars.PYTHON_VERSION }}
+      python_version: ${{ env.PYTHON_VERSION }}
       srcs_paths: "src/"
     needs: build
