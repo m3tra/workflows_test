@@ -10,13 +10,13 @@ on:
       python_version:
         required: true
         type: string
+      coverage_path:
+        required: true
+        type: string
       srcs_paths:
         required: false
         type: string
       tests_path:
-        required: false
-        type: string
-      coverage_path:
         required: false
         type: string
     secrets:
@@ -36,12 +36,12 @@ jobs:
       - name: Set dynamic variable
         run: echo REPO="$(echo ${{ github.repository }} | sed -e "s/\//:/g")" >> ${{ github.env }}
 
-      # - name: Download Coverage Report Artifact
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: coverage_report
-      #     path: ${{ inputs.coverage_path }}
-      #     github-token: ${{ github.token }}
+      - name: Download Coverage Report Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage_report
+          path: ${{ inputs.coverage_path }}
+          github-token: ${{ github.token }}
 
       - name: Scan
         uses: sonarsource/sonarqube-scan-action@master
