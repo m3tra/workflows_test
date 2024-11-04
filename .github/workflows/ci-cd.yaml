@@ -36,4 +36,5 @@ jobs:
       sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
     with:
       python_version: ${{ vars.PYTHON_VERSION }}
+      srcs_paths: "src/"
     needs: build
