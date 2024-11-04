@@ -34,8 +34,8 @@ jobs:
     uses: ./.github/workflows/sonarqube.yml
     secrets:
       sonar_token: ${{ secrets.SONAR_TOKEN }}
-      sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
     with:
-      python_version: ${{ env.PYTHON_VERSION }}
+      sonar_host_url: ${{ vars.SONAR_HOST_URL }}
+      python_version: ${{ vars.PYTHON_VERSION }}
       srcs_paths: "src/"
     needs: build
