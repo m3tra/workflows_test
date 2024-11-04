@@ -1,0 +1,23 @@
+services:
+
+  idr:
+    env_file: .env
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      platforms:
+        - "linux/amd64"
+        - "linux/arm64"
+
+    # environment:
+    #   LOGLEVEL: INFO
+    #   AZURE_AI_SEARCH_SERVICE_NAME: "$AZURE_AI_SEARCH_SERVICE_NAME"
+    #   AZURE_AI_SEARCH_API_KEY: "$AZURE_AI_SEARCH_API_KEY"
+    #   OPENAI_API_TYPE: "$OPENAI_API_TYPE"
+    #   AZURE_OPENAI_API_KEY: "$AZURE_OPENAI_API_KEY"
+    #   AZURE_OPENAI_ENDPOINT: "$AZURE_OPENAI_ENDPOINT"
+    #   AZURE_OPENAI_API_VERSION: "$AZURE_OPENAI_API_VERSION"
+    #   AZURE_OPENAI_CHAT_DEPLOYMENT_NAME: "$AZURE_OPENAI_CHAT_DEPLOYMENT_NAME"
+
+    ports:
+      - 8000:8000

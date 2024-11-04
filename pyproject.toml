@@ -1,0 +1,41 @@
+[project]
+
+name = "idr"
+requires-python = ">= 3.12"
+version = "0.6.0"
+authors = [
+    { name = "Simão Faria", email = "simao.faria@innowave.tech" },
+    { name = "José Trigueiro", email = "jose.trigueiro@innowave.tech" },
+]
+readme = "README.md"
+
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 120
+
+# avoids cleaning unused imports with pycln precommit hook
+[tool.pycln]
+exclude = "tests"
+
+# pytest options
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--ignore=data"
+log_cli = "True"
+
+# coverage
+[tool.coverage.run]
+omit = [".python_packages/*", "data/*"]
+
+[tool.coverage.report]
+omit = [".python_packages/*", "tests/*", "data/*"]
+
+[tool.ruff]
+line-length = 120
+extend-exclude = ["scripts", "data"]
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+ignore = []

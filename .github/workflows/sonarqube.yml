@@ -1,0 +1,53 @@
+name: SonarQube Static Testing (Python)
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      python_version:
+        required: true
+        type: string
+      srcs_paths: # src/
+        required: true
+        type: string
+      tests_path: # tests/
+        required: false
+        type: string
+      coverage_path: # coverage.xml
+        required: false
+        type: string
+
+jobs:
+  build:
+    name: SonarQube Static Testing
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Set dynamic variable
+        run: echo REPO="$(echo ${{ github.repository }} | sed -e "s/\//:/g")" >> ${{ github.env }}
+
+      - name: Download Coverage Report Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage_report
+          path: ${{ inputs.coverage_path }}
+          github-token: ${{ github.token }}
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=${{ env.REPO }}
+            -Dsonar.verbose=true
+            -Dsonar.python.version=${{ inputs.python_version }}
+            -Dsonar.sources=${{ inputs.srcs_paths }}
+            -Dsonar.tests=${{ inputs.tests_path }}
+            -Dsonar.python.coverage.reportPaths=${{ inputs.coverage_path }}
+#            -Dsonar.qualitygate.wait=true

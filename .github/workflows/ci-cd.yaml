@@ -1,0 +1,32 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: development
+    name: "Build"
+    steps:
+      - name: Say hi
+        run: echo hello
+
+  sonarqube:
+    permissions:
+      contents: read
+      actions: read
+    uses: ./.github/workflows/sonarqube.yml
+    with:
+      python_version: "3.12"
+      srcs_paths: "src/"
+    needs: build

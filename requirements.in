@@ -1,0 +1,13 @@
+aiohttp
+aiofiles
+azure-ai-documentintelligence
+azure-storage-blob
+fastapi[standard]
+loguru
+openai
+pypdf[image]
+python-dotenv
+tiktoken
+unidecode
+python-magic; sys_platform != 'win32'
+python-magic-bin; sys_platform == 'win32'

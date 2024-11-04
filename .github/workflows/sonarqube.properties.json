@@ -1,9 +1,0 @@
-{
-    "name": "SonarQube",
-    "description": "SonarQube Scan",
-    "iconName": "octicon codescan",
-    "categories": [
-        "code-quality",
-        "code-review"
-    ]
-}
