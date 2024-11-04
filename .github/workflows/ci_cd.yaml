@@ -8,11 +8,15 @@ on:
 
 jobs:
   Build:
+    permissions:
+      contents: read
+      actions: write
     uses: ./.github/workflows/build.yaml
 
   SonarQube:
     permissions:
-      contents: write
+      contents: read
+      actions: read
     needs: Build
     uses: ./.github/workflows/sonarqube.yaml
 
