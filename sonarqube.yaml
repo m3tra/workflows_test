@@ -1,0 +1,35 @@
+name: SonarQube
+
+on:
+  # workflow_run:
+  #   workflows: [CI/CD]
+  #   types: [completed]
+  schedule:
+    - cron: '0 16 * * 0' # Every sunday at 16:00
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  Scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Coverage Report Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage_report
+          path: coverage.xml
+          github-token: ${{ github.token }}
+
+      - name: Echo & Sleep
+        run: echo Scanning...; sleep 7
+  Check:
+    name: Quality Gate Check
+    needs: Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo & Sleep
+        run: echo Analyzing new code...; sleep 7
