@@ -16,6 +16,11 @@ on:
       coverage_path: # coverage.xml
         required: false
         type: string
+    secrets:
+      sonar_token:
+        required: true
+      sonar_host_url:
+        required: true
 
 jobs:
   build:
@@ -40,8 +45,8 @@ jobs:
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.sonar_token }}
+          SONAR_HOST_URL: ${{ secrets.sonar_host_url }}
         with:
           args: >
             -Dsonar.projectKey=${{ env.REPO }}

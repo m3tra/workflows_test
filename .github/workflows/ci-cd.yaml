@@ -28,6 +28,9 @@ jobs:
       contents: read
       actions: read
     uses: ./.github/workflows/sonarqube.yml
+    secrets:
+      sonar_token: ${{ secrets.SONAR_TOKEN }}
+      sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
     with:
       python_version: "3.12"
       srcs_paths: "src/"
