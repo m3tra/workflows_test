@@ -23,7 +23,7 @@ on:
         required: true
 
 jobs:
-  build:
+  scan:
     name: SonarQube Static Testing
     if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
       #     path: ${{ inputs.coverage_path }}
       #     github-token: ${{ github.token }}
 
-      - name: SonarQube Scan
+      - name: Scan
         uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.sonar_token }}
@@ -55,4 +55,6 @@ jobs:
             -Dsonar.sources=${{ inputs.srcs_paths }}
             -Dsonar.tests=${{ inputs.tests_path }}
             -Dsonar.python.coverage.reportPaths=${{ inputs.coverage_path }}
-#            -Dsonar.qualitygate.wait=true
+
+      - name: Quality Gate Check
+        uses: SonarSource/sonarqube-quality-gate-action@master
