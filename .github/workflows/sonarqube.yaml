@@ -26,6 +26,10 @@ jobs:
 
       - name: Echo & Sleep
         run: echo Scanning...; sleep 7
+
+      - name: Test github var
+        run: echo ${{ github.repository }}
+
   Check:
     name: Quality Gate Check
     needs: Scan
