@@ -30,12 +30,12 @@ jobs:
       - name: Set dynamic variable
         run: echo REPO="$(echo ${{ github.repository }} | sed -e "s/\//:/g")" >> ${{ github.env }}
 
-      - name: Download Coverage Report Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: coverage_report
-          path: ${{ inputs.coverage_path }}
-          github-token: ${{ github.token }}
+      # - name: Download Coverage Report Artifact
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: coverage_report
+      #     path: ${{ inputs.coverage_path }}
+      #     github-token: ${{ github.token }}
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@master
@@ -49,5 +49,5 @@ jobs:
             -Dsonar.python.version=${{ inputs.python_version }}
             -Dsonar.sources=${{ inputs.srcs_paths }}
             -Dsonar.tests=${{ inputs.tests_path }}
-            -Dsonar.python.coverage.reportPaths=${{ inputs.coverage_path }}
+            # -Dsonar.python.coverage.reportPaths=${{ inputs.coverage_path }}
 #            -Dsonar.qualitygate.wait=true
