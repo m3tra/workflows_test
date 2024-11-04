@@ -11,6 +11,8 @@ jobs:
     uses: ./.github/workflows/build.yaml
 
   SonarQube:
+    permissions:
+      contents: write
     needs: Build
     uses: ./.github/workflows/sonarqube.yaml
 
