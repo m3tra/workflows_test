@@ -49,5 +49,5 @@ jobs:
             -Dsonar.python.version=${{ inputs.python_version }}
             -Dsonar.sources=${{ inputs.srcs_paths }}
             -Dsonar.tests=${{ inputs.tests_path }}
-            # -Dsonar.python.coverage.reportPaths=${{ inputs.coverage_path }}
+#            -Dsonar.python.coverage.reportPaths=${{ inputs.coverage_path }}
 #            -Dsonar.qualitygate.wait=true
