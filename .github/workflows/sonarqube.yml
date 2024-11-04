@@ -10,13 +10,13 @@ on:
       python_version:
         required: true
         type: string
-      srcs_paths: # src/
+      srcs_paths:
         required: false
         type: string
-      tests_path: # tests/
+      tests_path:
         required: false
         type: string
-      coverage_path: # coverage.xml
+      coverage_path:
         required: false
         type: string
     secrets:
