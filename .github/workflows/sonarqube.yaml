@@ -9,10 +9,11 @@ on:
   workflow_dispatch:
   workflow_call:
 
+permissions:
+  contents: write
+
 jobs:
   Scan:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
     steps:
         - name: Download Coverage Report Artifact
