@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/build.yaml
 
   SonarQube:
-    needs: build
+    needs: Build
     uses: ./.github/workflows/sonarqube.yaml
 
   Deploy:
