@@ -45,22 +45,22 @@ jobs:
       - name: List files
         run: ls -la
 
-      # - name: Scan
-      #   uses: sonarsource/sonarqube-scan-action@master
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.sonar_token }}
-      #     SONAR_HOST_URL: ${{ inputs.sonar_host_url }}
-      #   with:
-      #     args: >
-      #       -Dsonar.projectKey=${{ env.REPO }}
-      #       -Dsonar.verbose=true
-      #       -Dsonar.python.version=${{ vars.PYTHON_VERSION }}
-      #       -Dsonar.sources=${{ inputs.srcs_paths }}
-      #       -Dsonar.tests=${{ inputs.tests_path }}
-      #       -Dsonar.python.coverage.reportPaths=${{ inputs.coverage_name }}
+      - name: Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.sonar_token }}
+          SONAR_HOST_URL: ${{ inputs.sonar_host_url }}
+        with:
+          args: >
+            -Dsonar.projectKey=${{ env.REPO }}
+            -Dsonar.verbose=true
+            -Dsonar.python.version=${{ vars.PYTHON_VERSION }}
+            -Dsonar.sources=${{ inputs.srcs_paths }}
+            -Dsonar.tests=${{ inputs.tests_path }}
+            -Dsonar.python.coverage.reportPaths=coverage.xml
 
-      # - name: Quality Gate Check
-      #   uses: SonarSource/sonarqube-quality-gate-action@master
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.sonar_token }}
-      #     SONAR_HOST_URL: ${{ inputs.sonar_host_url }}
+      - name: Quality Gate Check
+        uses: SonarSource/sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.sonar_token }}
+          SONAR_HOST_URL: ${{ inputs.sonar_host_url }}
