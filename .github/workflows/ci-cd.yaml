@@ -43,7 +43,7 @@ jobs:
     with:
       sonar_host_url: ${{ vars.SONAR_HOST_URL }}
       python_version: ${{ vars.PYTHON_VERSION }}
-      coverage_name: "coverage_report"
+      coverage_name: coverage_report
       srcs_paths: "src/"            # Optional
       tests_path: "tests/"          # Optional
     needs: build
