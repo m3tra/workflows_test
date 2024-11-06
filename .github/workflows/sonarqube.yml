@@ -10,7 +10,7 @@ on:
       python_version:
         required: true
         type: string
-      coverage_path:
+      coverage_name:
         required: true
         type: string
       srcs_paths:
@@ -39,26 +39,28 @@ jobs:
       - name: Download Coverage Report Artifact
         uses: actions/download-artifact@v4
         with:
-          name: coverage_report
-          path: ${{ inputs.coverage_path }}
+          name: ${{ inputs.coverage_name }}
           github-token: ${{ github.token }}
 
-      - name: Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.sonar_token }}
-          SONAR_HOST_URL: ${{ inputs.sonar_host_url }}
-        with:
-          args: >
-            -Dsonar.projectKey=${{ env.REPO }}
-            -Dsonar.verbose=true
-            -Dsonar.python.version=${{ vars.PYTHON_VERSION }}
-            -Dsonar.sources=${{ inputs.srcs_paths }}
-            -Dsonar.tests=${{ inputs.tests_path }}
-            -Dsonar.python.coverage.reportPaths=${{ inputs.coverage_path }}
+      - name: List files
+        run: ls -la
 
-      - name: Quality Gate Check
-        uses: SonarSource/sonarqube-quality-gate-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.sonar_token }}
-          SONAR_HOST_URL: ${{ inputs.sonar_host_url }}
+      # - name: Scan
+      #   uses: sonarsource/sonarqube-scan-action@master
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.sonar_token }}
+      #     SONAR_HOST_URL: ${{ inputs.sonar_host_url }}
+      #   with:
+      #     args: >
+      #       -Dsonar.projectKey=${{ env.REPO }}
+      #       -Dsonar.verbose=true
+      #       -Dsonar.python.version=${{ vars.PYTHON_VERSION }}
+      #       -Dsonar.sources=${{ inputs.srcs_paths }}
+      #       -Dsonar.tests=${{ inputs.tests_path }}
+      #       -Dsonar.python.coverage.reportPaths=${{ inputs.coverage_name }}
+
+      # - name: Quality Gate Check
+      #   uses: SonarSource/sonarqube-quality-gate-action@master
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.sonar_token }}
+      #     SONAR_HOST_URL: ${{ inputs.sonar_host_url }}

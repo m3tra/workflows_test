@@ -21,7 +21,16 @@ jobs:
     name: "Build"
     steps:
       - name: Say hi
-        run: echo hello
+        run: echo hello > coverage.xml
+
+      - name: Upload Coverage Report Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage_report
+          path: coverage.xml
+          if-no-files-found: error
+          retention-days:
+          overwrite: true
 
   sonarqube:
     name: SonarQube
@@ -34,7 +43,7 @@ jobs:
     with:
       sonar_host_url: ${{ vars.SONAR_HOST_URL }}
       python_version: ${{ vars.PYTHON_VERSION }}
-      coverage_path: "coverage.xml"
+      coverage_name: "coverage_report"
       srcs_paths: "src/"            # Optional
       tests_path: "tests/"          # Optional
     needs: build
